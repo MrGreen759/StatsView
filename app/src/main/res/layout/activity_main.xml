@@ -12,10 +12,6 @@
         android:layout_height="300dp"
         app:textSize="40dp"
         app:lineWidth="16dp"
-        app:color1="#3de909"
-        app:color2="#ecab44"
-        app:color4="#47cdff"
-        app:color3="#182977"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -42,7 +42,7 @@ class StatsView @JvmOverloads constructor(
                 getColor(R.styleable.StatsView_color1, getRandomColor()),
                 getColor(R.styleable.StatsView_color2, getRandomColor()),
                 getColor(R.styleable.StatsView_color3, getRandomColor()),
-                getColor(R.styleable.StatsView_color4, getRandomColor())
+                getColor(R.styleable.StatsView_color4, getRandomColor()),
             )
         }
     }
@@ -98,14 +98,16 @@ class StatsView @JvmOverloads constructor(
         var color1 = 0
         newData.forEachIndexed { index, datum ->
             val angle = datum * 3.60F
-            paint.color = getRandomColor()
+            paint.color = colors.get(index)
             if (index == 0) color1 = paint.color
-            canvas.drawArc(oval, startAngle, angle * progress, false, paint)
+            canvas.drawArc(oval, startAngle + (progress*360), angle * progress, false, paint)
             startAngle += angle
         }
 
-        paint.color = color1
-        canvas.drawArc(oval,-90F, 1F, false, paint)
+        if (progress == 1F) {
+            paint.color = color1
+            canvas.drawArc(oval, -90F, 1F, false, paint)
+        }
 
         canvas.drawText(
             "%.2f%%".format(newData.sum()),
@@ -128,7 +130,7 @@ class StatsView @JvmOverloads constructor(
                 progress = anim.animatedValue as Float
                 invalidate()
             }
-            duration = 500
+            duration = 4000
             interpolator = LinearInterpolator()
         }.also {
             it.start()
