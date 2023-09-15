@@ -14,8 +14,6 @@ class MainActivity : AppCompatActivity() {
             1F,
             2F,
             3F,
-            4F
         )
-
     }
 }
