@@ -95,17 +95,15 @@ class StatsView @JvmOverloads constructor(
         }
 
         var startAngle = -90F
-        var color1 = 0
         newData.forEachIndexed { index, datum ->
             val angle = datum * 3.60F
             paint.color = colors.get(index)
-            if (index == 0) color1 = paint.color
             canvas.drawArc(oval, startAngle + (progress*360), angle * progress, false, paint)
             startAngle += angle
         }
 
         if (progress == 1F) {
-            paint.color = color1
+            paint.color = colors.get(0)
             canvas.drawArc(oval, -90F, 1F, false, paint)
         }
 
